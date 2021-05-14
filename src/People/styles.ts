@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-	height: 100vh;
 	background: #F9FAFB;
+	height: 100vh;
 `;
 
 export const Header = styled.div`
@@ -12,6 +12,7 @@ export const Header = styled.div`
 	position: sticky;
 	top: 0;
 	z-index: sticky;
+	background: #F9FAFB;;
 `;
 
 export const InnerHeaderWrapper = styled.div`
@@ -34,18 +35,16 @@ export const BackbuttonWrapper = styled.div`
 `;
 
 export const SectionWrapper = styled.section`
-	display: flex;
-	position: relative;
-	z-index: 10;
-	flex-direction: column;
-	margin: 0 auto;
 	width: 100%;
 `;
 
-export const InnerSectionWrapper = styled.div`
+export const InnerSectionWrapper = styled.section`
 	padding: 0 7%;
+	margin: 0 233px;
+`;
+
+export const PeopleWrapper = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	max-width: 100%;
-	margin: 0 233px;
+	width: 100%;
 `;
