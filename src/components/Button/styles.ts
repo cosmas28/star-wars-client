@@ -1,15 +1,31 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
-export const Container = styled.button`
+export type StyleProps = {
+	variant?: "primary" | "secondary";
+}
+
+const VARIANT_STYLES = {
+	primary: css`
+		border: 1px solid #2097F9;
+		color: #2097F9;
+		border-radius: 6px;
+		padding: 8px 16px;
+	`,
+	secondary: css`
+		border: none;
+		color: #202327;
+	`
+}
+
+export const Container = styled.button<StyleProps>`
 	display: inline-flex;
 	font-weight: 400;
 	font-size: 14px;
-	border: none;
 	cursor: pointer;
 	position: relative;
 	align-items: center;
-	color: #202327;
 	background: none;
+	${({variant}) => VARIANT_STYLES[variant || "primary"]}
 
 	&:focus {
 		outline: 0;
@@ -17,6 +33,7 @@ export const Container = styled.button`
 `;
 
 export const Label = styled.p`
+	margin: 0;
 	display: flex;
 	font-weight: 500;
 	font-size: 16px;
