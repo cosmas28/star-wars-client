@@ -33,7 +33,7 @@ export const People: React.FC<{}> = () => {
 							<StarIconWrapper>
 								{ICONS["star"]}
 							</StarIconWrapper>
-							<LogoText>Wars</LogoText>
+							<LogoText>wars</LogoText>
 						</LogoWrapper>
 						<SearchbarWrapper>
 							<Input
@@ -47,7 +47,7 @@ export const People: React.FC<{}> = () => {
 				<SectionWrapper>
 					<InnerSectionWrapper>
 						{
-							searchTerm
+							!searchTerm
 								? (
 									<PeopleWrapper>
 										<PersonCard

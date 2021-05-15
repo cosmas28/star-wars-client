@@ -5,6 +5,18 @@ export const Container = styled.div`
 	height: auto;
 	width: 47%;
 	padding: 12px;
+
+	@media screen and (min-width: 1440px) {
+		width: 47.6%;
+	}
+
+	@media screen and (max-width: 960px) {
+		width: 100%
+	}
+
+	@media screen and (max-width:480px) {
+		width: 100%;
+	}
 `;
 
 export const InnerContainer = styled.div`
@@ -36,6 +48,12 @@ export const DetailsRow = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+
+	@media screen and (max-width: 480px) {
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
 `;
 
 export const DetailsText = styled.p`
