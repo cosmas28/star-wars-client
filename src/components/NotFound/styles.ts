@@ -13,11 +13,12 @@ export const EmptyPageWrapper = styled.div`
 export const IconWrapper = styled.div`
 	display: flex;
 	padding: 16px;
-	font-size: 24px;
+	font-size: 36px;
 `;
 
 export const Message = styled.p`
 	margin: 8px;
 	display: flex;
 	font-size: 36px;
+	text-align: center;
 `;
