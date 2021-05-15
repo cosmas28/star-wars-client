@@ -1,10 +1,16 @@
 import * as React from "react";
+import {RouteComponentProps} from "react-router-dom";
+import {gql, useQuery} from "@apollo/client";
+
 
 import {ICONS} from "../components/Icons";
 import {Input} from "../components/Input";
 import {NotFound} from "../components/NotFound";
 import {PageLayout} from "../components/PageLayout";
-import {PersonCard} from "../components/PersonCard"
+import {Pagination} from "../components/Pagination";
+import {PersonCard, Person} from "../components/PersonCard";
+import {Snackbar} from "../components/Snackbar";
+import {Spinner} from "../components/Spinner";
 
 import {
 	InnerHeaderWrapper,
@@ -16,10 +22,35 @@ import {
 	StarIconWrapper,
 	LogoWrapper,
 	LogoText,
+	PaginationWrapper,
 } from "./styles";
 
-export const People: React.FC<{}> = () => {
+export const GET_PEOPLE_DATA = gql`
+	query GetPeopleData($page: Int, $search: String) {
+		peopleData(page: $page, search: $search) {
+			count
+			people {
+				name
+				height
+				gender
+				mass
+				homeworld
+			}
+		}
+	}
+`
+
+interface Props extends RouteComponentProps {}
+
+export const People: React.FC<Props> = () => {
 	const [searchTerm, setSearchTerm] = React.useState("");
+	const [page, setPage] = React.useState(1)
+	const {loading, error, data} = useQuery(GET_PEOPLE_DATA, {
+		variables: {
+			page,
+			search: searchTerm
+		}
+	})
 
 	const handleInputChange = (value: string) => {
 		setSearchTerm(value);
@@ -47,33 +78,24 @@ export const People: React.FC<{}> = () => {
 				<SectionWrapper>
 					<InnerSectionWrapper>
 						{
-							!searchTerm
+							loading ? (
+								<Spinner/>
+							) : data?.peopleData?.people?.length > 0
 								? (
 									<PeopleWrapper>
-										<PersonCard
-											name="Luke Skywalker"
-											height="144"
-											mass="63"
-											homeworld="http://swapi.dev/api/planets/1/"
-											gender="male"
-											onClick={() => console.log("you've clicked, Luke Skywalker")}
-										/>
-										<PersonCard
-											name="C-3PO"
-											height="144"
-											mass="63"
-											homeworld="http://swapi.dev/api/planets/1/"
-											gender="male"
-											onClick={() => console.log("you've clicked, Luke Skywalker")}
-										/>
-										<PersonCard
-											name="R2-D2"
-											height="144"
-											mass="63"
-											homeworld="http://swapi.dev/api/planets/1/"
-											gender="male"
-											onClick={() => console.log("you've clicked, Luke Skywalker")}
-										/>
+										{
+											data.peopleData.people.map((person: Person, index: number) => (
+												<PersonCard
+													key={index}
+													name={person.name}
+													height={person.height}
+													mass={person.mass}
+													homeworld={person.homeworld}
+													gender={person.gender}
+													onClick={() => console.log("you've clicked, Luke Skywalker")}
+												/>
+											))
+										}
 									</PeopleWrapper>
 								) : (
 									<NotFound
@@ -84,6 +106,18 @@ export const People: React.FC<{}> = () => {
 									/>
 								)
 						}
+						{
+							data?.peopleData?.count > 10 &&
+							<PaginationWrapper>
+								<Pagination
+									pageCount={data?.peopleData?.count}
+									currentPage={page}
+									onPageChange={setPage}
+									rangeToDisplay={3}
+								/>
+							</PaginationWrapper>
+						}
+						<Snackbar active={!!error} >Something seems to wrong with the system. Please try again later!</Snackbar>
 					</InnerSectionWrapper>
 				</SectionWrapper>
 		</PageLayout>

@@ -26,7 +26,7 @@ export const InnerHeaderWrapper = styled.div`
 	}
 
 	@media screen and (max-width: 1440px) {
-		padding: 0 6%;
+		padding: 0 5%;
     margin: 0 10%;
 	}
 
@@ -110,7 +110,7 @@ export const InnerSectionWrapper = styled.section`
 	}
 
 	@media screen and (max-width: 1440px) {
-		padding: 0 5%;
+		padding: 0 4%;
     margin: 0 10%;
 	}
 
@@ -129,8 +129,12 @@ export const PeopleWrapper = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
+`;
 
-	@media screen and (min-width: 320px) {
-		
-	}
+export const PaginationWrapper = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 24px 0 40px;
 `;
