@@ -2,6 +2,7 @@ import * as React from "react";
 
 import {Avatar} from "../components/Avatar";
 import {Button} from "../components/Button";
+import {IconButton} from "../components/IconButton";
 
 import {
 	MainSection,
@@ -93,13 +94,12 @@ export const PersonDetails: React.FC<{}> = () => {
 					<Divider/>
 				</ContentWrapper>
 				<Footer>
-					<Button
+					<IconButton
 						onClick={() => console.log("TO-DO. Back to home page")}
-						trailingIcon="chevronRight"
-						variant="secondary"
+						iconName="chevronLeft"
 					>
 						Back
-					</Button>
+					</IconButton>
 				</Footer>
 			</InnerSection>
 		</MainSection>
