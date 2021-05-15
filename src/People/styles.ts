@@ -24,14 +24,30 @@ export const InnerHeaderWrapper = styled.div`
 `;
 
 export const SearchbarWrapper = styled.div`
-	width: 48%;
+	width: 29%;
 `;
 
-export const BackbuttonWrapper = styled.div`
-	width: 48%;
+export const LogoWrapper = styled.div`
+	width: 70%;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: flex-start;
+`;
+
+export const LogoText = styled.h3`
+	margin: 0;
+	display: flex;
+	text-align: center;
+	margin-left: 4px;
+	font-weight: 500;
+	font-size: 24px;
 	color: #72777D;
+`
+
+export const StarIconWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	color: #72777D;
+	font-size: 24px;
 `;
 
 export const SectionWrapper = styled.section`

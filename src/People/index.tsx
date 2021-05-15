@@ -1,20 +1,21 @@
 import * as React from "react";
 
-import {Button} from "../components/Button";
+import {ICONS} from "../components/Icons";
 import {Input} from "../components/Input";
 import {NotFound} from "../components/NotFound";
 import {PageLayout} from "../components/PageLayout";
 import {PersonCard} from "../components/PersonCard"
 
 import {
-	Container,
 	InnerHeaderWrapper,
 	Header,
 	SearchbarWrapper,
-	BackbuttonWrapper,
 	SectionWrapper,
 	InnerSectionWrapper,
 	PeopleWrapper,
+	StarIconWrapper,
+	LogoWrapper,
+	LogoText,
 } from "./styles";
 
 export const People: React.FC<{}> = () => {
@@ -28,6 +29,12 @@ export const People: React.FC<{}> = () => {
 		<PageLayout>
 				<Header>
 					<InnerHeaderWrapper>
+						<LogoWrapper>
+							<StarIconWrapper>
+								{ICONS["star"]}
+							</StarIconWrapper>
+							<LogoText>Wars</LogoText>
+						</LogoWrapper>
 						<SearchbarWrapper>
 							<Input
 								onChange={handleInputChange}
@@ -35,9 +42,6 @@ export const People: React.FC<{}> = () => {
 								value={searchTerm}
 							/>
 						</SearchbarWrapper>
-						<BackbuttonWrapper>
-							<Button variant="secondary" trailingIcon="chevronRight" onClick={() => console.log("clicked")}>Go back</Button>
-						</BackbuttonWrapper>
 					</InnerHeaderWrapper>
 				</Header>
 				<SectionWrapper>
