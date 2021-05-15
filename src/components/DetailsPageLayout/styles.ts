@@ -5,8 +5,25 @@ export const MainSection = styled.section`
 `;
 
 export const InnerSection = styled.section`
-	margin: 2% 33% 0;
-	padding: 0 5%;
+	@media screen and (min-width: 1441px) {
+		margin: 2% 28% 0;
+		padding: 0 5%;
+	}
+
+	@media screen and (max-width: 1440px) {
+		margin: 2% 25% 0;
+		padding: 0 5%;
+	}
+
+	@media screen and (max-width: 960px) {
+		padding: 0 3.5%;
+		margin: 2% 10% 0;
+	}
+
+	@media screen and (max-width: 480px) {
+		padding: 0 4%;
+		margin: 2% 0 0;
+	}
 `;
 
 export const HeaderWrapper = styled.div`
