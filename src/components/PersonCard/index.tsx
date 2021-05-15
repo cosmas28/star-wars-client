@@ -18,14 +18,17 @@ import {
 	Content,
 } from "./styles";
 
-type Props = {
+export type Person = {
 	name: string;
 	height: string;
 	mass: string;
 	homeworld: string;
 	gender: "male" | "Female" | "n/a";
+}
+
+type Props = {
 	onClick: () => void;
-};
+} & Person;
 
 export const PersonCard: React.FC<Props> = ({
 	name,
