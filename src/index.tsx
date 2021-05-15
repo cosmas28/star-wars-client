@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   ApolloClient,
-  gql,
+  ApolloProvider,
   NormalizedCacheObject,
   InMemoryCache,
 } from "@apollo/client";
@@ -32,9 +32,9 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
 });
 
 ReactDOM.render(
-  <React.StrictMode>
+  <ApolloProvider client={client}>
     <App />
-  </React.StrictMode>,
+  </ApolloProvider>,
   document.getElementById('root')
 );
 
