@@ -1,9 +1,5 @@
-import * as React from "react";
+import * as React from 'react';
 
-import {Container} from "./styles";
+import { Container } from './styles';
 
-export const PageLayout: React.FC<{}> = ({children}) => (
-	<Container>
-		{children}
-	</Container>
-);
+export const PageLayout: React.FC<{}> = ({ children }) => <Container>{children}</Container>;

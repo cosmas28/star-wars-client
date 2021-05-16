@@ -1,16 +1,9 @@
 import * as React from 'react';
 
-import {ICONS} from "../Icons"
+import { ICONS } from '../Icons';
 
-import {getPageRangeToDisplay} from '../../utils/getPageRangeToDisplay';
-import {
-  Container,
-  PageSelector,
-  PreviousPage,
-  NextPage,
-  PageBreak,
-  PagesWrapper,
-} from './styles';
+import { getPageRangeToDisplay } from '../../utils/getPageRangeToDisplay';
+import { Container, PageSelector, PreviousPage, NextPage, PageBreak, PagesWrapper } from './styles';
 
 type Props = {
   pageCount: number;
@@ -55,26 +48,21 @@ export const Pagination: React.FunctionComponent<Props> = ({
     <Container>
       <PagesWrapper>
         <PreviousPage disabled={firstPage} onClick={handlePreviousPage}>
-          {ICONS["chevronLeft"]}
+          {ICONS.chevronLeft}
         </PreviousPage>
         {pages.map((page, index) => (
           <React.Fragment key={index}>
             {!page ? (
-              <PageBreak>
-                {ICONS["ellipsis"]}
-              </PageBreak>
+              <PageBreak>{ICONS.ellipsis}</PageBreak>
             ) : (
-              <PageSelector
-                selected={page === currentPage}
-                onClick={getChangePageHandler(page)}
-              >
+              <PageSelector selected={page === currentPage} onClick={getChangePageHandler(page)}>
                 {page}
               </PageSelector>
             )}
           </React.Fragment>
         ))}
         <NextPage disabled={lastPage} onClick={handleNextPage}>
-          {ICONS["chevronRight"]}
+          {ICONS.chevronRight}
         </NextPage>
       </PagesWrapper>
     </Container>

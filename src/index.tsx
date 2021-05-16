@@ -1,11 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  ApolloClient,
-  ApolloProvider,
-  NormalizedCacheObject,
-  InMemoryCache,
-} from "@apollo/client";
+import { ApolloClient, ApolloProvider, NormalizedCacheObject, InMemoryCache } from '@apollo/client';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -19,15 +14,15 @@ const cache: InMemoryCache = new InMemoryCache({
         },
         person: {
           merge: true,
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 });
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
-  uri: "http://localhost:8000/graphql"
+  uri: 'http://localhost:8000/graphql',
 });
 
 ReactDOM.render(

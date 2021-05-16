@@ -1,6 +1,6 @@
 const generateRange = (start: number, end: number) => {
   const length = end - start + 1;
-  return Array.from({length}, (_, index) => start + index);
+  return Array.from({ length }, (_, index) => start + index);
 };
 
 export const getPageRangeToDisplay = ({
@@ -11,21 +11,14 @@ export const getPageRangeToDisplay = ({
   pageCount: number;
   currentPage: number;
   rangeToDisplay: number;
-}): (
-  | number
-  | undefined
-)[] /* undefined values mark discontinuity in the range */ => {
+}): (number | undefined)[] /* undefined values mark discontinuity in the range */ => {
   if (pageCount <= rangeToDisplay) return generateRange(1, pageCount);
 
   if (currentPage < rangeToDisplay)
     return [...generateRange(1, rangeToDisplay - 1), undefined, pageCount];
 
   if (currentPage + rangeToDisplay - 1 > pageCount)
-    return [
-      1,
-      undefined,
-      ...generateRange(pageCount - rangeToDisplay + 2, pageCount),
-    ];
+    return [1, undefined, ...generateRange(pageCount - rangeToDisplay + 2, pageCount)];
 
   const centerRangeLength = rangeToDisplay - 2;
   const padding = Math.floor(centerRangeLength / 2);
@@ -39,10 +32,7 @@ export const getPageRangeToDisplay = ({
   return [
     1,
     undefined,
-    ...generateRange(
-      currentPage - padding,
-      currentPage + padding - pairRangeNormalizer,
-    ),
+    ...generateRange(currentPage - padding, currentPage + padding - pairRangeNormalizer),
     undefined,
     pageCount,
   ];
