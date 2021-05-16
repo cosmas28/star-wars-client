@@ -53,15 +53,21 @@ export const People: React.FC<Props> = () => {
 		}
 	})
 
+	const [activeSnackbar, setActiveSnackbar] = React.useState(false);
+
 	const handleInputChange = (value: string) => {
 		setSearchTerm(value);
 	}
+
+	React.useEffect(() => {
+		if (error) setActiveSnackbar(true);
+	}, [error]);
 
 	return (
 		<PageLayout>
 				<Header>
 					<InnerHeaderWrapper>
-						<LogoWrapper>
+						<LogoWrapper onClick={() => setActiveSnackbar(true)}>
 							<StarIconWrapper>
 								{ICONS["star"]}
 							</StarIconWrapper>
@@ -118,7 +124,7 @@ export const People: React.FC<Props> = () => {
 								/>
 							</PaginationWrapper>
 						}
-						<Snackbar active={!!error} >Something seems to wrong with the system. Please try again later!</Snackbar>
+						<Snackbar close={() => setActiveSnackbar(false)} active={activeSnackbar} >Something seems to wrong with the system</Snackbar>
 					</InnerSectionWrapper>
 				</SectionWrapper>
 		</PageLayout>

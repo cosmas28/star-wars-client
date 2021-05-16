@@ -8,6 +8,8 @@ import {DetailsPageLayout} from "../components/DetailsPageLayout";
 import {NotFound} from "../components/NotFound";
 import {Snackbar} from "../components/Snackbar";
 
+import {extractNumberFromString} from "../utils/extractNumberFromString";
+
 import {DotDivider} from "../components/PersonCard/styles"
 import {
 	AvatarWrapper,
@@ -47,7 +49,14 @@ export const PersonDetails: React.FC<{}> = () => {
 		variables: {
 			name,
 		}
-	})
+	});
+	const planetId = extractNumberFromString(data?.person?.homeworld);
+
+	const [activeSnackbar, setActiveSnackbar] = React.useState(false);
+
+	React.useEffect(() => {
+		if (error) setActiveSnackbar(true);
+	}, [error]);
 
 	return (
 		<DetailsPageLayout
@@ -64,7 +73,9 @@ export const PersonDetails: React.FC<{}> = () => {
 					<HeaderTitleWrapper>
 						<NameWrapper>{data?.person.name}</NameWrapper>
 						<DotDivider/>
-						<HomeworldLink>Home world</HomeworldLink>
+						<HomeworldLink onClick={() => history.push(`/planet/${planetId}`)}>
+							Home world
+						</HomeworldLink>
 					</HeaderTitleWrapper>
 				</>
 			)}
@@ -87,14 +98,14 @@ export const PersonDetails: React.FC<{}> = () => {
 					</>
 					) : (
 						<NotFound
-							iconName="search"
-							message="No results found"
-							handleClick={() => console.log("TO-DO: Go to home page!")}
-							buttonLabel="Go home"
+							iconName="exclamationTriangle"
+							message="Sorry!! This person does not exist."
+							handleClick={() => history.goBack()}
+							buttonLabel="Previous page"
 						/>
 					)
 			}
-		<Snackbar active={!!error} >Something seems to wrong with the system. Please try again later!</Snackbar>
+		<Snackbar close={() => setActiveSnackbar(false)} active={activeSnackbar} >Something seems to wrong with the system. Please try again later!</Snackbar>
 		</DetailsPageLayout>
 	)
 }
