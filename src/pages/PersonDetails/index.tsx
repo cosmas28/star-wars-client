@@ -53,7 +53,7 @@ export const PersonDetails: React.FC<{}> = () => {
     if (error) setActiveSnackbar(true);
   }, [error]);
 
-  const onClickBackButton = () => history.push('/');
+  const onClickBackButton = () => history.goBack();
 
   const onCloseSnackbar = () => setActiveSnackbar(false);
 

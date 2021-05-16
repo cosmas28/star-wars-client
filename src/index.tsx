@@ -22,7 +22,7 @@ const cache: InMemoryCache = new InMemoryCache({
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
-  uri: 'http://localhost:8000/graphql',
+  uri: process.env.REACT_APP_API_HOST,
 });
 
 ReactDOM.render(
