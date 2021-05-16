@@ -9,6 +9,7 @@ import {NotFound} from "../components/NotFound";
 import {Snackbar} from "../components/Snackbar";
 
 import {extractNumberFromString} from "../utils/extractNumberFromString";
+import {formatCamelCase} from "../utils/formatCamelCase";
 
 import {DotDivider} from "../components/PersonCard/styles"
 import {
@@ -50,7 +51,7 @@ export const PersonDetails: React.FC<{}> = () => {
 			name,
 		}
 	});
-	const planetId = extractNumberFromString(data?.person?.homeworld);
+	const planetId = data?.person?.homeworld ? extractNumberFromString(data?.person?.homeworld) : undefined;
 
 	const [activeSnackbar, setActiveSnackbar] = React.useState(false);
 
@@ -88,7 +89,7 @@ export const PersonDetails: React.FC<{}> = () => {
 							Object.keys(data?.person).map((key, index) => (
 								<React.Fragment key={index}>
 									<DetailsRow
-										label={key}
+										label={formatCamelCase(key)}
 										value={data.person[key]}
 									/>
 									<Divider/>

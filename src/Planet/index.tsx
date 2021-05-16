@@ -7,6 +7,8 @@ import {DetailsPageLayout} from "../components/DetailsPageLayout";
 import {ICONS} from "../components/Icons";
 import {NotFound} from "../components/NotFound";
 
+import {formatCamelCase} from "../utils/formatCamelCase";
+
 import {
 	NameWrapper,
 	Divider,
@@ -64,7 +66,7 @@ export const Planet: React.FC<{}> = () => {
 							Object.keys(data.planet).map((key, index) => (
 								<React.Fragment key={index}>
 									<DetailsRow
-										label={key}
+										label={formatCamelCase(key)}
 										value={data.planet[key]}
 									/>
 									<Divider/>
