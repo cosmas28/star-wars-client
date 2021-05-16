@@ -11,7 +11,7 @@ import {
 	HomeIconWrapper,
 } from "./styles";
 
-export const HomeWorld: React.FC<{}> = () => {
+export const Planet: React.FC<{}> = () => {
 	return (
 		<DetailsPageLayout
 			handleBackButtonClick={() => console.log("TO-DO. Back to home page")}
