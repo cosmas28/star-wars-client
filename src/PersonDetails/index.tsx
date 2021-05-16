@@ -38,7 +38,6 @@ export const GET_PERSON_DETAILS_NAME = gql`
 			starships
 			created
 			edited
-			url
 		}
 	}
 `
@@ -86,15 +85,18 @@ export const PersonDetails: React.FC<{}> = () => {
 					<>
 						<Divider/>
 						{
-							Object.keys(data?.person).map((key, index) => (
-								<React.Fragment key={index}>
-									<DetailsRow
-										label={formatCamelCase(key)}
-										value={data.person[key]}
-									/>
-									<Divider/>
-								</React.Fragment>
-							))
+							Object.keys(data?.person).map((key, index) => {
+								if (key === "__typename" || key === "homeworld") return undefined;
+								return (
+									<React.Fragment key={index}>
+										<DetailsRow
+											label={formatCamelCase(key)}
+											value={data.person[key]}
+										/>
+										<Divider/>
+									</React.Fragment>
+								)
+							})
 						}
 					</>
 					) : (

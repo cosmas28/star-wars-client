@@ -53,7 +53,7 @@ export const Planet: React.FC<{}> = () => {
 				<>
 					<HomeIconWrapper>{ICONS["home"]}</HomeIconWrapper>
 					<HeaderTitleWrapper>
-						<NameWrapper>Naboo</NameWrapper>
+						<NameWrapper>{data?.planet?.name}</NameWrapper>
 					</HeaderTitleWrapper>
 				</>
 			)}
@@ -63,15 +63,18 @@ export const Planet: React.FC<{}> = () => {
 				<>
 						<Divider/>
 						{
-							Object.keys(data.planet).map((key, index) => (
-								<React.Fragment key={index}>
-									<DetailsRow
-										label={formatCamelCase(key)}
-										value={data.planet[key]}
-									/>
-									<Divider/>
-								</React.Fragment>
-							))
+							Object.keys(data.planet).map((key, index) => {
+								if (key === "__typename") return undefined;
+								return (
+									<React.Fragment key={index}>
+										<DetailsRow
+											label={formatCamelCase(key)}
+											value={data.planet[key]}
+										/>
+										<Divider/>
+									</React.Fragment>
+								)
+							})
 						}
 				</>
 			) : (
