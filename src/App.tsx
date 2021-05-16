@@ -11,8 +11,8 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" component={People} exact />
-        <Route path="/person_details"><PersonDetails/></Route>
-        <Route path="/home_world"><HomeWorld/></Route>
+        <Route path="/person-details/:name"><PersonDetails/></Route>
+        <Route path="/home-world"><HomeWorld/></Route>
         <Route path="*" component={PageNotFound} />
       </Switch>
     </Router>
