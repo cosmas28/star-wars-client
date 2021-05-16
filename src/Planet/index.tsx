@@ -1,8 +1,11 @@
+import {gql, useQuery} from "@apollo/client";
 import * as React from "react";
+import {useParams, useHistory} from "react-router-dom";
 
 import {DetailsRow} from "../components/DetailsRow";
 import {DetailsPageLayout} from "../components/DetailsPageLayout";
 import {ICONS} from "../components/Icons";
+import {NotFound} from "../components/NotFound";
 
 import {
 	NameWrapper,
@@ -11,10 +14,39 @@ import {
 	HomeIconWrapper,
 } from "./styles";
 
+export const GET_PLANET_DETAILS_BY_ID = gql`
+	query GetPlanetDetails($id: String!) {
+		planet(id: $id) {
+			name
+			rotationPeriod
+			orbitalPeriod
+			diameter
+			climate
+			gravity
+			terrain
+			surfaceWater
+			population
+			residents
+			films
+			created
+			edited
+		}
+	}
+`
+
 export const Planet: React.FC<{}> = () => {
+	const history = useHistory();
+	const {id} = useParams<{id: string}>();
+	const {loading, error, data} = useQuery(GET_PLANET_DETAILS_BY_ID, {
+		variables: {
+			id,
+		}
+	})
+
 	return (
 		<DetailsPageLayout
-			handleBackButtonClick={() => console.log("TO-DO. Back to home page")}
+			loading={loading}
+			handleBackButtonClick={() => history.goBack()}
 			renderHeader={() => (
 				<>
 					<HomeIconWrapper>{ICONS["home"]}</HomeIconWrapper>
@@ -24,12 +56,31 @@ export const Planet: React.FC<{}> = () => {
 				</>
 			)}
 		>
-			<Divider/>
-			<DetailsRow
-				label="Rotation period"
-				value="26"
-			/>
-			<Divider/>
+		{
+			data?.planet ? (
+				<>
+						<Divider/>
+						{
+							Object.keys(data.planet).map((key, index) => (
+								<React.Fragment key={index}>
+									<DetailsRow
+										label={key}
+										value={data.planet[key]}
+									/>
+									<Divider/>
+								</React.Fragment>
+							))
+						}
+				</>
+			) : (
+				<NotFound
+					iconName="exclamationTriangle"
+					message="Sorry!! This planet does not exist."
+					handleClick={() => history.goBack()}
+					buttonLabel="Previous page"
+				/>
+			)
+		}
 		</DetailsPageLayout>
 	)
 }
