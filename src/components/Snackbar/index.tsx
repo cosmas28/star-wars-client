@@ -9,14 +9,11 @@ type Props = {
 	close: () => void;
 }
 
-export const Snackbar: React.FC<Props> = ({active, close, children}) => {
-	console.log(active);
-	return (
-		<Container active={active}>
-			<Content>
-				<Message>{children}</Message>
-				<CrossIconWrapper onClick={close}>{ICONS["cross"]}</CrossIconWrapper>
-			</Content>
-		</Container>
-	);
-}
+export const Snackbar: React.FC<Props> = ({active, close, children}) => (
+	<Container active={active}>
+		<Content>
+			<Message>{children}</Message>
+			<CrossIconWrapper onClick={close}>{ICONS["cross"]}</CrossIconWrapper>
+		</Content>
+	</Container>
+);
