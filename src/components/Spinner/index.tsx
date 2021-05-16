@@ -1,7 +1,11 @@
 import * as React from "react";
 
-import {Container, SpinElement} from "./styles";
+import {Container, SpinElement, StyleProps} from "./styles";
 
-export const Spinner: React.FC<{}> = () => (
-	<Container><SpinElement/></Container>
-);
+type Props = {
+	page?: boolean;
+} & StyleProps;
+
+export const Spinner: React.FC<Props> = ({page, size}) => {
+	return page ? <Container><SpinElement size={size} /></Container> : <SpinElement size={size} />;
+}

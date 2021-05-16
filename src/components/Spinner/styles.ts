@@ -1,4 +1,13 @@
-import styled, {keyframes} from "styled-components";
+import styled, {keyframes, css} from "styled-components";
+
+export type StyleProps = {
+	size?: "small" | "large";
+}
+
+const SIZE = {
+	small: "40",
+	large: "80"
+}
 
 export const Container = styled.div`
 	display: flex;
@@ -20,12 +29,15 @@ const spin = keyframes`
 	}
 `
 
-export const SpinElement = styled.div`
+export const SpinElement = styled.div<StyleProps>`
 	border: 6px solid #E4E6E8;
 	border-radius: 50%;
 	border-top: 6px solid #72777D;
-	width: 80px;
-	height: 80px;
 	-webkit-animation: ${spin} 2s linear infinite;
 	animation: ${spin} 2s linear infinite;
+
+	${({size}) => css`
+		width: ${SIZE[size || "small"]}px;
+		height: ${SIZE[size || "small"]}px;
+	`}
 `;
