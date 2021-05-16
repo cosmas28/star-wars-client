@@ -25,7 +25,7 @@ const fadeout = keyframes`
 
 export const Container = styled.div<{active: boolean}>`
 	visibility: hidden;
-  min-width: 250px;
+  min-width: 400px;
   margin-left: -125px;
   background-color: #202327;
   color: white;
@@ -42,4 +42,22 @@ export const Container = styled.div<{active: boolean}>`
 			visibility: visible;
   		animation: ${fadein} 0.5s, ${fadeout} 0.5s 2.5s;
 		`}
+`;
+
+export const Content = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 16px;
+	font-height: 20px;
+`;
+
+export const Message = styled.p`
+	margin: 0;
+	text-align: center;
+`
+
+export const CrossIconWrapper = styled.div`
+	display: flex;
+	align-items: center;
 `;
