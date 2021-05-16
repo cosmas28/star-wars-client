@@ -1,5 +1,5 @@
 import * as React from "react";
-import {RouteComponentProps} from "react-router-dom";
+import {RouteComponentProps, useHistory} from "react-router-dom";
 import {gql, useQuery} from "@apollo/client";
 
 
@@ -43,6 +43,7 @@ export const GET_PEOPLE_DATA = gql`
 interface Props extends RouteComponentProps {}
 
 export const People: React.FC<Props> = () => {
+	const history = useHistory();
 	const [searchTerm, setSearchTerm] = React.useState("");
 	const [page, setPage] = React.useState(1)
 	const {loading, error, data} = useQuery(GET_PEOPLE_DATA, {
@@ -79,7 +80,7 @@ export const People: React.FC<Props> = () => {
 					<InnerSectionWrapper>
 						{
 							loading ? (
-								<Spinner/>
+								<Spinner size="large" page />
 							) : data?.peopleData?.people?.length > 0
 								? (
 									<PeopleWrapper>
@@ -92,7 +93,7 @@ export const People: React.FC<Props> = () => {
 													mass={person.mass}
 													homeworld={person.homeworld}
 													gender={person.gender}
-													onClick={() => console.log("you've clicked, Luke Skywalker")}
+													onClick={() => history.push(`/person-details/${person.name}`)}
 												/>
 											))
 										}
