@@ -2,12 +2,12 @@ import {gql, useQuery} from "@apollo/client";
 import * as React from "react";
 import {useParams, useHistory} from "react-router-dom";
 
-import {DetailsRow} from "../components/DetailsRow";
-import {DetailsPageLayout} from "../components/DetailsPageLayout";
-import {ICONS} from "../components/Icons";
-import {NotFound} from "../components/NotFound";
+import {DetailsRow} from "../../components/DetailsRow";
+import {DetailsPageLayout} from "../../components/DetailsPageLayout";
+import {ICONS} from "../../components/Icons";
+import {NotFound} from "../../components/NotFound";
 
-import {formatCamelCase} from "../utils/formatCamelCase";
+import {formatCamelCase} from "../../utils/formatCamelCase";
 
 import {
 	NameWrapper,

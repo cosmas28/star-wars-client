@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import {NotFound} from "../components/NotFound";
-import {PageLayout} from "../components/PageLayout";
+import {NotFound} from "../../components/NotFound";
+import {PageLayout} from "../../components/PageLayout";
 
 export const PageNotFound: React.FC<{}> = () => (
 	<PageLayout>

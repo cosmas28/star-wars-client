@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
-import {Planet} from "./Planet";
-import {PageNotFound} from "./PageNotFound/";
-import {People} from "./People";
-import {PersonDetails} from "./PersonDetails";
+import {Planet} from "./pages/Planet";
+import {PageNotFound} from "./pages/PageNotFound";
+import {People} from "./pages/People";
+import {PersonDetails} from "./pages/PersonDetails";
 
 import {GlobalStyles} from "./styles";
 

@@ -2,16 +2,16 @@ import * as React from "react";
 import {useParams, useHistory} from "react-router-dom";
 import {gql, useQuery} from "@apollo/client";
 
-import {Avatar} from "../components/Avatar";
-import {DetailsRow} from "../components/DetailsRow";
-import {DetailsPageLayout} from "../components/DetailsPageLayout";
-import {NotFound} from "../components/NotFound";
-import {Snackbar} from "../components/Snackbar";
+import {Avatar} from "../../components/Avatar";
+import {DetailsRow} from "../../components/DetailsRow";
+import {DetailsPageLayout} from "../../components/DetailsPageLayout";
+import {NotFound} from "../../components/NotFound";
+import {Snackbar} from "../../components/Snackbar";
 
-import {extractNumberFromString} from "../utils/extractNumberFromString";
-import {formatCamelCase} from "../utils/formatCamelCase";
+import {extractNumberFromString} from "../../utils/extractNumberFromString";
+import {formatCamelCase} from "../../utils/formatCamelCase";
 
-import {DotDivider} from "../components/PersonCard/styles"
+import {DotDivider} from "../../components/PersonCard/styles"
 import {
 	AvatarWrapper,
 	NameWrapper,

@@ -3,14 +3,14 @@ import {RouteComponentProps, useHistory} from "react-router-dom";
 import {gql, useQuery} from "@apollo/client";
 
 
-import {ICONS} from "../components/Icons";
-import {Input} from "../components/Input";
-import {NotFound} from "../components/NotFound";
-import {PageLayout} from "../components/PageLayout";
-import {Pagination} from "../components/Pagination";
-import {PersonCard, Person} from "../components/PersonCard";
-import {Snackbar} from "../components/Snackbar";
-import {Spinner} from "../components/Spinner";
+import {ICONS} from "../../components/Icons";
+import {Input} from "../../components/Input";
+import {NotFound} from "../../components/NotFound";
+import {PageLayout} from "../../components/PageLayout";
+import {Pagination} from "../../components/Pagination";
+import {PersonCard, Person} from "../../components/PersonCard";
+import {Snackbar} from "../../components/Snackbar";
+import {Spinner} from "../../components/Spinner";
 
 import {
 	InnerHeaderWrapper,
