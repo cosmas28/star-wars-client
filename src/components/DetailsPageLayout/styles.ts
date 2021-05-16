@@ -6,23 +6,23 @@ export const MainSection = styled.section`
 
 export const InnerSection = styled.section`
 	@media screen and (min-width: 1441px) {
-		margin: 2% 28% 0;
+		margin: 2% 28%;
 		padding: 0 5%;
 	}
 
 	@media screen and (max-width: 1440px) {
-		margin: 2% 25% 0;
+		margin: 2% 25%;
 		padding: 0 5%;
 	}
 
 	@media screen and (max-width: 960px) {
 		padding: 0 3.5%;
-		margin: 2% 10% 0;
+		margin: 2% 10%;
 	}
 
 	@media screen and (max-width: 480px) {
 		padding: 0 4%;
-		margin: 2% 0 0;
+		margin: 2% 0;
 	}
 `;
 
