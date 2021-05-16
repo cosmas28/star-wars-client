@@ -6,16 +6,21 @@ import {PageNotFound} from "./PageNotFound/";
 import {People} from "./People";
 import {PersonDetails} from "./PersonDetails";
 
+import {GlobalStyles} from "./styles";
+
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/" component={People} exact />
-        <Route path="/person-details/:name" exact ><PersonDetails/></Route>
-        <Route path="/planet/:id" exact ><Planet/></Route>
-        <Route path="*" component={PageNotFound} />
-      </Switch>
-    </Router>
+    <>
+      <GlobalStyles/>
+      <Router>
+        <Switch>
+          <Route path="/" component={People} exact />
+          <Route path="/person-details/:name" exact ><PersonDetails/></Route>
+          <Route path="/planet/:id" exact ><Planet/></Route>
+          <Route path="*" component={PageNotFound} />
+        </Switch>
+      </Router>
+    </>
   );
 }
 
