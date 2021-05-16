@@ -1,8 +1,11 @@
 import * as React from "react";
+import {useHistory} from "react-router-dom";
 
 import {Avatar} from "../Avatar";
 import {InitialLetter} from "../Avatar/initialLetters";
 import {ICONS} from "../Icons";
+
+import {extractNumberFromString} from "../../utils/extractNumberFromString";
 
 import {
 	Container,
@@ -38,6 +41,9 @@ export const PersonCard: React.FC<Props> = ({
 	gender,
 	onClick,
 }) => {
+	const history = useHistory();
+	const planetId = extractNumberFromString(homeworld);
+
 	return (
 		<Container>
 			<InnerContainer>
@@ -57,7 +63,7 @@ export const PersonCard: React.FC<Props> = ({
 							<DotDivider />
 							<DetailsText>{height} cm</DetailsText>
 							<DotDivider />
-							<DetailsLink onClick={() => console.log("Todo: go to another planets page", homeworld)}>Homeworld</DetailsLink>
+							<DetailsLink onClick={() => history.push(`planet/${planetId}`)}>Homeworld</DetailsLink>
 						</DetailsRow>
 					</DetailsWrapper>
 					<ChevronRightWrapper onClick={onClick}>{ICONS["chevronRight"]}</ChevronRightWrapper>
