@@ -10,5 +10,9 @@ type Props = {
 };
 
 export const IconButton: React.FC<Props> = ({ iconName, onClick }) => {
-  return <Container onClick={onClick}>{ICONS[iconName]}</Container>;
+  return (
+    <Container data-testid="icon-button" onClick={onClick}>
+      {ICONS[iconName]}
+    </Container>
+  );
 };
