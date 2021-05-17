@@ -18,7 +18,7 @@ export const Input: React.FC<Props> = ({ onChange, placeholder, value }) => {
     <InputElementWrapper>
       <InputElement onChange={handleChange} value={value} placeholder={placeholder} />
       {value && (
-        <ClearIconWrapper onClick={handleClearInput}>
+        <ClearIconWrapper data-testid="input-cross-button" onClick={handleClearInput}>
           <BsX />
         </ClearIconWrapper>
       )}
