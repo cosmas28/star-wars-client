@@ -47,13 +47,13 @@ export const Pagination: React.FunctionComponent<Props> = ({
   return (
     <Container>
       <PagesWrapper>
-        <PreviousPage disabled={firstPage} onClick={handlePreviousPage}>
+        <PreviousPage data-testid="prev-button" disabled={firstPage} onClick={handlePreviousPage}>
           {ICONS.chevronLeft}
         </PreviousPage>
         {pages.map((page, index) => (
           <React.Fragment key={index}>
             {!page ? (
-              <PageBreak>{ICONS.ellipsis}</PageBreak>
+              <PageBreak data-testid="page-break">{ICONS.ellipsis}</PageBreak>
             ) : (
               <PageSelector selected={page === currentPage} onClick={getChangePageHandler(page)}>
                 {page}
@@ -61,7 +61,7 @@ export const Pagination: React.FunctionComponent<Props> = ({
             )}
           </React.Fragment>
         ))}
-        <NextPage disabled={lastPage} onClick={handleNextPage}>
+        <NextPage data-testid="next-button" disabled={lastPage} onClick={handleNextPage}>
           {ICONS.chevronRight}
         </NextPage>
       </PagesWrapper>
