@@ -8,10 +8,10 @@ type Props = {
 
 export const Spinner: React.FC<Props> = ({ page, size }) => {
   return page ? (
-    <Container>
-      <SpinElement size={size} />
+    <Container data-testid="container">
+      <SpinElement data-testid="spinner-element" size={size} />
     </Container>
   ) : (
-    <SpinElement size={size} />
+    <SpinElement data-testid="spinner-element" size={size} />
   );
 };
