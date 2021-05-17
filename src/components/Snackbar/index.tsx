@@ -10,10 +10,12 @@ type Props = {
 };
 
 export const Snackbar: React.FC<Props> = ({ active, close, children }) => (
-  <Container active={active}>
+  <Container data-testid="snackbar-container" active={active}>
     <Content>
       <Message>{children}</Message>
-      <CrossIconWrapper onClick={close}>{ICONS.cross}</CrossIconWrapper>
+      <CrossIconWrapper data-testid="cross-icon" onClick={close}>
+        {ICONS.cross}
+      </CrossIconWrapper>
     </Content>
   </Container>
 );
