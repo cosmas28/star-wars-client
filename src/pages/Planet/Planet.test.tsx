@@ -66,7 +66,6 @@ describe('Planet', () => {
       );
 
       await new Promise((resolve) => setTimeout(resolve, 0));
-			screen.debug();
     });
 
     it('should be able to click on back button', async () => {
