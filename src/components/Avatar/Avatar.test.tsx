@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {render, cleanup} from "../../test-utils";
+import { render, cleanup } from '../../test-utils';
 
-import {Avatar} from './';
+import { Avatar } from './';
 
 describe('Avatar', () => {
-	afterEach(cleanup);
+  afterEach(cleanup);
 
-	it('renders without error', () => {
-		render(<Avatar initialLetter="B" sizeInPx="40"/>)
-	})
-})
+  it('renders without error', () => {
+    render(<Avatar initialLetter="B" sizeInPx="40" />);
+  });
+});
