@@ -13,7 +13,7 @@ import { formatCamelCase } from '../../utils/formatCamelCase';
 import { DotDivider } from '../../components/PersonCard/styles';
 import { AvatarWrapper, NameWrapper, Divider, HomeworldLink, HeaderTitleWrapper } from './styles';
 
-export const GET_PERSON_DETAILS_NAME = gql`
+export const GET_PERSON_DETAILS_BY_NAME = gql`
   query GetPersonDetails($name: String!) {
     person(name: $name) {
       name
@@ -38,7 +38,7 @@ export const GET_PERSON_DETAILS_NAME = gql`
 export const PersonDetails: React.FC<{}> = () => {
   const history = useHistory();
   const { name } = useParams<{ name: string }>();
-  const { loading, error, data } = useQuery(GET_PERSON_DETAILS_NAME, {
+  const { loading, error, data } = useQuery(GET_PERSON_DETAILS_BY_NAME, {
     variables: {
       name,
     },
