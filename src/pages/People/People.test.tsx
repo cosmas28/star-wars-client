@@ -1,7 +1,7 @@
 import React from 'react';
 import { InMemoryCache } from '@apollo/client';
 
-import { renderApollo, cleanup, screen, render, fireEvent } from '../../test-utils';
+import { renderApollo, cleanup, screen, fireEvent } from '../../test-utils';
 
 import { GET_PEOPLE_DATA, People } from './';
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 
 import { render, cleanup, fireEvent, screen } from '../../test-utils';
 
