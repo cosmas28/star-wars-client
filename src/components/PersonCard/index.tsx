@@ -55,7 +55,9 @@ export const PersonCard: React.FC<Props> = ({ name, height, mass, homeworld, gen
               <DotDivider />
               <DetailsText>{height} cm</DetailsText>
               <DotDivider />
-              <DetailsLink onClick={onClickHomeworld}>Homeworld</DetailsLink>
+              <DetailsLink data-testid="person-card-homeworld" onClick={onClickHomeworld}>
+                Homeworld
+              </DetailsLink>
             </DetailsRow>
           </DetailsWrapper>
           <ChevronRightWrapper onClick={onClick}>{ICONS.chevronRight}</ChevronRightWrapper>
