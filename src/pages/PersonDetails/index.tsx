@@ -41,7 +41,7 @@ export const GET_PERSON_DETAILS_BY_NAME = gql`
 export const PersonDetails: React.FC<{}> = () => {
   const history = useHistory();
   const { name } = useParams<{ name: string }>();
-  const { loading, error, data } = useQuery(GET_PERSON_DETAILS_BY_NAME, {
+  const { loading, data } = useQuery(GET_PERSON_DETAILS_BY_NAME, {
     variables: {
       name,
     },
