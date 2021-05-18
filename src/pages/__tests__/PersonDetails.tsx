@@ -4,7 +4,7 @@ import { InMemoryCache } from '@apollo/client';
 
 import { renderApollo, cleanup, screen, fireEvent } from '../../test-utils';
 
-import { GET_PLANET_DETAILS_BY_ID, Planet } from './';
+import { GET_PERSON_DETAILS_BY_NAME, PersonDetails } from '../PersonDetails';
 
 const mockHistoryPush = jest.fn();
 
@@ -12,31 +12,31 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useHistory: () => ({
     push: mockHistoryPush,
-    goBack: jest.fn(),
   }),
   useParams: () => ({
-    id: '1',
+    name: 'Owen Lars',
   }),
 }));
 
-const mockPlanet = {
-  __typename: 'Planet',
-  name: 'Tatooine',
-  rotationPeriod: 'n/a',
-  orbitalPeriod: 'n/a',
-  diameter: '10465',
-  climate: 'arid',
-  gravity: '1 standard',
-  terrain: 'desert',
-  surfaceWater: 'n/a',
-  population: '200000',
-  residents: 10,
-  films: 5,
-  created: 'Dec 9, 2014 4:50 PM',
-  edited: 'Dec 20, 2014 11:58 PM',
+const mockPerson = {
+  name: 'Owen Lars',
+  height: '178',
+  mass: '120',
+  hairColor: 'n/a',
+  skinColor: 'a/n',
+  eyeColor: 'n/a',
+  birthYear: 'n/a',
+  gender: 'male',
+  homeworld: 'http://swapi.dev/api/planets/1/',
+  films: 0,
+  species: 0,
+  vehicles: 0,
+  starships: 0,
+  created: '2014-12-09T13:50:51.644000Z',
+  edited: '2014-12-20T21:17:56.891000Z',
 };
 
-describe('Planet', () => {
+describe('PersonDetails', () => {
   afterEach(cleanup);
 
   describe('with data', () => {
@@ -44,63 +44,95 @@ describe('Planet', () => {
     const mocks = [
       {
         request: {
-          query: GET_PLANET_DETAILS_BY_ID,
+          query: GET_PERSON_DETAILS_BY_NAME,
           variables: {
-            id: '1',
+            name: 'Owen Lars',
           },
         },
         result: {
           data: {
-            planet: mockPlanet,
+            person: mockPerson,
           },
         },
       },
     ];
 
-    it('renders planet details', async () => {
+    it('renders person details', () => {
       renderApollo(
         <MemoryRouter>
-          <Planet />
+          <PersonDetails />
         </MemoryRouter>,
         { mocks, cache }
       );
-
-      await new Promise((resolve) => setTimeout(resolve, 0));
     });
 
-    it('should be able to click on back button', async () => {
+    it('should be able to click on home world', async () => {
       renderApollo(
         <MemoryRouter>
-          <Planet />
+          <PersonDetails />
+        </MemoryRouter>,
+        { mocks, cache }
+      );
+
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      fireEvent.click(screen.getByText('Home world'));
+    });
+
+    it('should display avatar with letter A when name is null', async () => {
+      const cache = new InMemoryCache({ addTypename: false });
+      const mocks = [
+        {
+          request: {
+            query: GET_PERSON_DETAILS_BY_NAME,
+            variables: {
+              name: 'Owen Lars',
+            },
+          },
+          result: {
+            data: {
+              person: {
+                ...mockPerson,
+                name: '',
+              },
+            },
+          },
+        },
+      ];
+      renderApollo(
+        <MemoryRouter>
+          <PersonDetails />
         </MemoryRouter>,
         { mocks, cache }
       );
 
       await new Promise((resolve) => setTimeout(resolve, 0));
 
-      fireEvent.click(screen.getByTestId('icon-button'));
+      expect(screen.getByText('A')).toBeInTheDocument();
     });
   });
 
-  describe('with error', () => {
+  describe('without data', () => {
     const cache = new InMemoryCache({ addTypename: false });
     const mocks = [
       {
         request: {
-          query: GET_PLANET_DETAILS_BY_ID,
+          query: GET_PERSON_DETAILS_BY_NAME,
           variables: {
-            id: '1',
+            name: 'Owen Lars',
           },
         },
-        result: {},
-        error: new Error('Server error'),
+        result: {
+          data: {
+            person: {},
+          },
+        },
       },
     ];
 
     it('should display item does not exist', async () => {
       renderApollo(
         <MemoryRouter>
-          <Planet />
+          <PersonDetails />
         </MemoryRouter>,
         { mocks, cache }
       );
@@ -111,28 +143,25 @@ describe('Planet', () => {
     });
   });
 
-  describe('without planet data', () => {
+  describe('with error', () => {
     const cache = new InMemoryCache({ addTypename: false });
     const mocks = [
       {
         request: {
-          query: GET_PLANET_DETAILS_BY_ID,
+          query: GET_PERSON_DETAILS_BY_NAME,
           variables: {
-            id: '1',
+            name: 'Owen Lars',
           },
         },
-        result: {
-          data: {
-            planet: {},
-          },
-        },
+        result: {},
+        error: new Error('Server error'),
       },
     ];
 
-    it('should display this item does not exist', async () => {
+    it('should display item does not exist', async () => {
       renderApollo(
         <MemoryRouter>
-          <Planet />
+          <PersonDetails />
         </MemoryRouter>,
         { mocks, cache }
       );

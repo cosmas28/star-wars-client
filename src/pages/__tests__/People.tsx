@@ -3,7 +3,7 @@ import { InMemoryCache } from '@apollo/client';
 
 import { renderApollo, cleanup, screen, fireEvent } from '../../test-utils';
 
-import { GET_PEOPLE_DATA, People } from './';
+import { GET_PEOPLE_DATA, People } from '../People';
 
 const mockPerson = {
   name: 'Luke Skywalker',
