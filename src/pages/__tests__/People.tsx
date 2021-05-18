@@ -125,5 +125,17 @@ describe('People page', () => {
         expect(screen.getByText('No results found!')).toBeInTheDocument();
       });
     });
+
+    it('should click refresh page button', async () => {
+      renderApollo(<People />, {
+        mocks,
+        cache,
+      });
+
+      await waitFor(() => {
+        fireEvent.click(screen.getByText('Refresh page'))
+        // screen.debug()
+      });
+    })
   });
 });
