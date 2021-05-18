@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 
 import { render, cleanup, screen, fireEvent } from '../../test-utils';
 
-import { Input } from './';
+import { Input } from '../Input';
 
 describe('Input', () => {
   afterEach(cleanup);

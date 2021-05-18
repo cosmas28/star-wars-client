@@ -2,13 +2,18 @@ import React from 'react';
 
 import { render, cleanup } from '../../test-utils';
 
-import { IconButton } from './';
+import { Snackbar } from '../Snackbar';
 
-describe('IconButton', () => {
+describe('Snackbar', () => {
   afterEach(cleanup);
 
   it('renders without error', () => {
     const onClick = jest.fn();
-    render(<IconButton onClick={onClick} iconName="chevronRight" />);
+
+    render(
+      <Snackbar active={true} close={onClick}>
+        Displayed message
+      </Snackbar>
+    );
   });
 });

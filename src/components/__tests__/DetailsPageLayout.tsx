@@ -2,7 +2,7 @@ import React from 'react';
 
 import { render, cleanup } from '../../test-utils';
 
-import { DetailsPageLayout } from './';
+import { DetailsPageLayout } from '../DetailsPageLayout';
 
 describe('DetailsPageLayout', () => {
   afterEach(cleanup);

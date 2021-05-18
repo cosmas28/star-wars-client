@@ -3,7 +3,7 @@ import React from 'react';
 
 import { render, cleanup, screen } from '../../test-utils';
 
-import { Spinner } from './';
+import { Spinner } from '../Spinner';
 
 describe('Spinner', () => {
   afterEach(cleanup);

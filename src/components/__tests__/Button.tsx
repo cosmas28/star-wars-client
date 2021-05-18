@@ -2,18 +2,17 @@ import React from 'react';
 
 import { render, cleanup } from '../../test-utils';
 
-import { Snackbar } from './';
+import { Button } from '../Button';
 
-describe('Snackbar', () => {
+describe('Button', () => {
   afterEach(cleanup);
 
   it('renders without error', () => {
     const onClick = jest.fn();
-
     render(
-      <Snackbar active={true} close={onClick}>
-        Displayed message
-      </Snackbar>
+      <Button onClick={onClick} trailingIcon="chevronRight" variant="secondary">
+        Label
+      </Button>
     );
   });
 });

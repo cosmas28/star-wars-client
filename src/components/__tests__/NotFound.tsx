@@ -2,7 +2,7 @@ import React from 'react';
 
 import { render, cleanup } from '../../test-utils';
 
-import { NotFound } from './';
+import { NotFound } from '../NotFound';
 
 describe('NotFound', () => {
   afterEach(cleanup);

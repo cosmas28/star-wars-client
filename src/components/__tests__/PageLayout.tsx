@@ -2,17 +2,17 @@ import React from 'react';
 
 import { render, cleanup } from '../../test-utils';
 
-import { Button } from './';
+import { PageLayout } from '../PageLayout';
 
-describe('Button', () => {
+describe('PageLayout', () => {
   afterEach(cleanup);
 
   it('renders without error', () => {
     const onClick = jest.fn();
     render(
-      <Button onClick={onClick} trailingIcon="chevronRight" variant="secondary">
-        Label
-      </Button>
+      <PageLayout>
+        <div>children</div>
+      </PageLayout>
     );
   });
 });

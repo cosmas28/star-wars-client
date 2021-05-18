@@ -2,17 +2,13 @@ import React from 'react';
 
 import { render, cleanup } from '../../test-utils';
 
-import { PageLayout } from './';
+import { IconButton } from '../IconButton';
 
-describe('PageLayout', () => {
+describe('IconButton', () => {
   afterEach(cleanup);
 
   it('renders without error', () => {
     const onClick = jest.fn();
-    render(
-      <PageLayout>
-        <div>children</div>
-      </PageLayout>
-    );
+    render(<IconButton onClick={onClick} iconName="chevronRight" />);
   });
 });

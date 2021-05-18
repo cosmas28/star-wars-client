@@ -2,12 +2,12 @@ import React from 'react';
 
 import { render, cleanup } from '../../test-utils';
 
-import { Avatar } from './';
+import { DetailsRow } from '../DetailsRow';
 
-describe('Avatar', () => {
+describe('DetailsRow', () => {
   afterEach(cleanup);
 
   it('renders without error', () => {
-    render(<Avatar initialLetter="B" sizeInPx="40" />);
+    render(<DetailsRow label="Mass" value="64 kg" />);
   });
 });

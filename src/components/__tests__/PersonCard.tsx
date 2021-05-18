@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { render, cleanup, fireEvent, screen } from '../../test-utils';
 
-import { PersonCard } from './';
+import { PersonCard } from '../PersonCard';
 
 const mockHistoryPush = jest.fn();
 
