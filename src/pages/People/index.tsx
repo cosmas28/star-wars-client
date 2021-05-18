@@ -1,3 +1,4 @@
+import {debounce} from 'debounce';
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
 import { gql, useQuery } from '@apollo/client';
@@ -41,12 +42,13 @@ export const GET_PEOPLE_DATA = gql`
 
 export const People: React.FC<{}> = () => {
   const history = useHistory();
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const [searchTerm, setSearchTerm] = React.useState<string>('');
+  const [delayedSearchTerm, setDelayedSearchTerm] = React.useState('');
   const [page, setPage] = React.useState(1);
   const { loading, error, data } = useQuery(GET_PEOPLE_DATA, {
     variables: {
       page,
-      search: searchTerm,
+      search: delayedSearchTerm,
     },
   });
 
@@ -54,7 +56,10 @@ export const People: React.FC<{}> = () => {
 
   const handleInputChange = (value: string) => {
     setSearchTerm(value);
+    handleDebounce(value);
   };
+
+  const handleDebounce = debounce((searchQuery: string) => setDelayedSearchTerm(searchQuery), 1000)
 
   React.useEffect(() => {
     if (error) setActiveSnackbar(true);
