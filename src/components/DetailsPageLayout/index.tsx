@@ -20,7 +20,7 @@ export const DetailsPageLayout: React.FC<Props> = ({
   loading,
   children,
   empty,
-  errorMessage
+  errorMessage,
 }) => {
   return (
     <MainSection>

@@ -28,13 +28,18 @@ import {
 export const GET_PEOPLE_DATA = gql`
   query GetPeopleData($page: Int, $search: String) {
     peopleData(page: $page, search: $search) {
-      count
-      people {
-        name
-        height
-        gender
-        mass
-        homeworld
+      ... on PeopleData {
+        count
+        people {
+          name
+          height
+          gender
+          mass
+          homeworld
+        }
+      }
+      ... on NotFoundError {
+        errorMessage
       }
     }
   }
@@ -78,7 +83,10 @@ export const People: React.FC<{}> = () => {
 
   const onClickPerson = (name: string) => () => history.push(`/person-details/${name}`);
 
-  const onCloseSnackbar = () => setActiveSnackbar(false);
+  const onCloseSnackbar = () => {
+    setActiveSnackbar(false);
+    onClickRefreshPageButton();
+  };
 
   const onClickRefreshPageButton = () => {
     refetch({ page: 1, search: '' });
@@ -100,7 +108,7 @@ export const People: React.FC<{}> = () => {
       </Header>
       <SectionWrapper>
         <InnerSectionWrapper>
-          {loading ? (
+          {loading || error ? (
             <Spinner size="large" page={true} />
           ) : data?.peopleData?.people?.length > 0 ? (
             <PeopleWrapper>
@@ -116,13 +124,15 @@ export const People: React.FC<{}> = () => {
                 />
               ))}
             </PeopleWrapper>
-          ) : (
+          ) : data?.peopleData.errorMessage ? (
             <NotFound
               iconName="search"
-              message="No results found!"
+              message={data.peopleData.errorMessage}
               handleClick={onClickRefreshPageButton}
-              buttonLabel="Refresh page"
+              buttonLabel="Go back"
             />
+          ) : (
+            <span />
           )}
           {pageCount > 1 && (
             <PaginationWrapper>
@@ -134,8 +144,8 @@ export const People: React.FC<{}> = () => {
               />
             </PaginationWrapper>
           )}
-          <Snackbar close={onCloseSnackbar} active={activeSnackbar}>
-            Something seems to wrong with the system
+          <Snackbar actionLabel="Home" onClick={onCloseSnackbar} active={activeSnackbar}>
+            Something seems to be wrong with the system.
           </Snackbar>
         </InnerSectionWrapper>
       </SectionWrapper>

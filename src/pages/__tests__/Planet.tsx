@@ -95,7 +95,7 @@ describe('Planet', () => {
       },
     ];
 
-    it('should display item does not exist', async () => {
+    it('should display error message', async () => {
       renderApollo(
         <MemoryRouter>
           <Planet />
@@ -104,7 +104,7 @@ describe('Planet', () => {
       );
 
       await waitFor(() => {
-        expect(screen.getByText('Sorry!! This item does not exist.')).toBeInTheDocument();
+        expect(screen.getByText('Planet with the id 1 does not exist!')).toBeInTheDocument();
       });
     });
   });
@@ -136,7 +136,7 @@ describe('Planet', () => {
       );
 
       await waitFor(() => {
-        expect(screen.getByText('Sorry!! This item does not exist.')).toBeInTheDocument();
+        expect(screen.getByText('Planet with the id 1 does not exist!')).toBeInTheDocument();
       });
     });
   });

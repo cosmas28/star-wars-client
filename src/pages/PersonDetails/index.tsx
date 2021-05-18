@@ -5,7 +5,6 @@ import { gql, useQuery } from '@apollo/client';
 import { Avatar } from '../../components/Avatar';
 import { DetailsRow } from '../../components/DetailsRow';
 import { DetailsPageLayout } from '../../components/DetailsPageLayout';
-import { Snackbar } from '../../components/Snackbar';
 import { extractNumberFromString } from '../../utils/extractNumberFromString';
 import { formatCamelCase } from '../../utils/formatCamelCase';
 
@@ -15,21 +14,26 @@ import { AvatarWrapper, NameWrapper, Divider, HomeworldLink, HeaderTitleWrapper 
 export const GET_PERSON_DETAILS_BY_NAME = gql`
   query GetPersonDetails($name: String!) {
     person(name: $name) {
-      name
-      height
-      mass
-      hairColor
-      skinColor
-      eyeColor
-      birthYear
-      gender
-      homeworld
-      films
-      species
-      vehicles
-      starships
-      created
-      edited
+      ... on AllPersonDetails {
+        name
+        height
+        mass
+        hairColor
+        skinColor
+        eyeColor
+        birthYear
+        gender
+        homeworld
+        films
+        species
+        vehicles
+        starships
+        created
+        edited
+      }
+      ... on NotFoundError {
+        errorMessage
+      }
     }
   }
 `;
@@ -46,22 +50,14 @@ export const PersonDetails: React.FC<{}> = () => {
     ? extractNumberFromString(data.person.homeworld)
     : undefined;
 
-  const [activeSnackbar, setActiveSnackbar] = React.useState(false);
-
-  React.useEffect(() => {
-    if (error) setActiveSnackbar(true);
-  }, [error]);
-
   const onClickBackButton = () => history.goBack();
-
-  const onCloseSnackbar = () => setActiveSnackbar(false);
 
   return (
     <DetailsPageLayout
       loading={loading}
       handleBackButtonClick={onClickBackButton}
-      empty={!data?.person}
-      errorMessage={`Planet with the name ${name} does not exist`}
+      empty={data?.person.errorMessage !== undefined}
+      errorMessage={data?.person.errorMessage}
       renderHeader={() => (
         <>
           <AvatarWrapper>
@@ -82,6 +78,7 @@ export const PersonDetails: React.FC<{}> = () => {
     >
       <Divider />
       {data?.person &&
+        !data?.person?.errorMessage &&
         Object.keys(data?.person).map((key, index) => {
           if (key === '__typename' || key === 'homeworld') return undefined;
           return (
@@ -91,9 +88,6 @@ export const PersonDetails: React.FC<{}> = () => {
             </React.Fragment>
           );
         })}
-      <Snackbar actionLabel="Close" onClick={onCloseSnackbar} active={activeSnackbar}>
-        System error! Please refresh or go back.
-      </Snackbar>
     </DetailsPageLayout>
   );
 };

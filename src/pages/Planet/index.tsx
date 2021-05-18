@@ -5,7 +5,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import { DetailsRow } from '../../components/DetailsRow';
 import { DetailsPageLayout } from '../../components/DetailsPageLayout';
 import { ICONS } from '../../components/Icons';
-import { Snackbar } from '../../components/Snackbar';
 import { formatCamelCase } from '../../utils/formatCamelCase';
 
 import { NameWrapper, Divider, HeaderTitleWrapper, HomeIconWrapper } from './styles';
@@ -39,22 +38,14 @@ export const Planet: React.FC<{}> = () => {
     },
   });
 
-  const [activeSnackbar, setActiveSnackbar] = React.useState(false);
-
-  React.useEffect(() => {
-    if (error) setActiveSnackbar(true);
-  }, [error]);
-
-  const onCloseSnackbar = () => setActiveSnackbar(false);
-
   const onClickBackButton = () => history.goBack();
 
   return (
     <DetailsPageLayout
       loading={loading}
       handleBackButtonClick={onClickBackButton}
-      empty={!data?.planet}
-      errorMessage={`Planet with the id ${id} does not exist`}
+      empty={!data?.planet || !!error}
+      errorMessage={`Planet with the id ${id} does not exist!`}
       renderHeader={() => (
         <>
           <HomeIconWrapper>{ICONS.home}</HomeIconWrapper>
@@ -75,9 +66,6 @@ export const Planet: React.FC<{}> = () => {
             </React.Fragment>
           );
         })}
-      <Snackbar actionLabel="Close" onClick={onCloseSnackbar} active={activeSnackbar}>
-        System error! Please refresh or go back.
-      </Snackbar>
     </DetailsPageLayout>
   );
 };

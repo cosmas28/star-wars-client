@@ -76,10 +76,16 @@ describe('People page', () => {
           query: GET_PEOPLE_DATA,
           variables: {
             page: 1,
-            search: '',
+            search: 'zak',
           },
         },
-        result: {},
+        result: {
+          data: {
+            peopleData: {
+              errorMessage: 'People with the name zak do not exist.',
+            },
+          },
+        },
         error: new Error('Server error'),
       },
     ];
@@ -91,51 +97,21 @@ describe('People page', () => {
       });
 
       await waitFor(() => {
-        expect(screen.getByText('Something seems to wrong with the system')).toBeInTheDocument();
+        expect(
+          screen.getByText('Something seems to be wrong with the system.')
+        ).toBeInTheDocument();
       });
     });
-  });
 
-  describe('without people data', () => {
-    const cache = new InMemoryCache({ addTypename: false });
-    const mocks = [
-      {
-        request: {
-          query: GET_PEOPLE_DATA,
-          variables: {
-            page: 1,
-            search: '',
-          },
-        },
-        result: {
-          data: {
-            peopleData: { count: 0, people: [] },
-          },
-        },
-      },
-    ];
-
-    it('should display no results found', async () => {
+    it('should be able to click home button', async () => {
       renderApollo(<People />, {
         mocks,
         cache,
       });
 
       await waitFor(() => {
-        expect(screen.getByText('No results found!')).toBeInTheDocument();
+        fireEvent.click(screen.getByText('Home'));
       });
     });
-
-    it('should click refresh page button', async () => {
-      renderApollo(<People />, {
-        mocks,
-        cache,
-      });
-
-      await waitFor(() => {
-        fireEvent.click(screen.getByText('Refresh page'))
-        // screen.debug()
-      });
-    })
   });
 });

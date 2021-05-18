@@ -7,7 +7,7 @@ import { PageLayout } from '../../components/PageLayout';
 export const PageNotFound: React.FC<{}> = () => {
   const history = useHistory();
 
-  const onClickHome = () => history.push('/');
+  const onClickHome = () => history.goBack();
 
   return (
     <PageLayout>
