@@ -22,4 +22,12 @@ export const Container = styled.button`
 	&:focus {
 		outline: 0;
 	}
+
+	@media screen and (max-width: 960px) {
+		font-size: 24px;
+	}
+
+	@media screen and (max-width: 480px) {
+		font-size: 24px;
+	}
 `;
