@@ -1,21 +1,20 @@
 import * as React from 'react';
 
-import { ICONS } from '../Icons';
-
-import { Container, Content, Message, CrossIconWrapper } from './styles';
+import { Container, Content, Message, ActionLabel } from './styles';
 
 type Props = {
   active: boolean;
-  close: () => void;
+  onClick: () => void;
+  actionLabel: string;
 };
 
-export const Snackbar: React.FC<Props> = ({ active, close, children }) => (
+export const Snackbar: React.FC<Props> = ({ active, onClick, children, actionLabel }) => (
   <Container data-testid="snackbar-container" active={active}>
     <Content>
       <Message>{children}</Message>
-      <CrossIconWrapper data-testid="cross-icon" onClick={close}>
-        {ICONS.cross}
-      </CrossIconWrapper>
+      <ActionLabel data-testid="snackbar-action" onClick={onClick}>
+        {actionLabel}
+      </ActionLabel>
     </Content>
   </Container>
 );

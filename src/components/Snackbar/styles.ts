@@ -26,7 +26,6 @@ const fadeout = keyframes`
 export const Container = styled.div<{active: boolean}>`
 	visibility: hidden;
   min-width: 400px;
-  margin-left: -125px;
   background-color: #202327;
   color: white;
   text-align: center;
@@ -34,7 +33,7 @@ export const Container = styled.div<{active: boolean}>`
   padding: 16px;
   position: fixed;
   z-index: 1;
-  left: 50%;
+  left: 35%;
   bottom: 30px;
 
 	${({active}) =>
@@ -57,7 +56,11 @@ export const Message = styled.p`
 	text-align: center;
 `
 
-export const CrossIconWrapper = styled.div`
+export const ActionLabel = styled.p`
 	display: flex;
+	margin: 0;
+	text-align: center;
 	align-items: center;
+	color: #57B3FF;
+	cursor: pointer;
 `;
