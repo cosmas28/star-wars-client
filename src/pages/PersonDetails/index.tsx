@@ -97,3 +97,5 @@ export const PersonDetails: React.FC<{}> = () => {
     </DetailsPageLayout>
   );
 };
+
+export default PersonDetails;

@@ -20,3 +20,5 @@ export const PageNotFound: React.FC<{}> = () => {
     </PageLayout>
   );
 };
+
+export default PageNotFound;

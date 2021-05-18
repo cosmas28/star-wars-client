@@ -81,3 +81,5 @@ export const Planet: React.FC<{}> = () => {
     </DetailsPageLayout>
   );
 };
+
+export default Planet;

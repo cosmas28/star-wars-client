@@ -1,29 +1,29 @@
-import * as React from 'react';
+import React, {lazy, Suspense} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { Planet } from './pages/Planet';
-import { PageNotFound } from './pages/PageNotFound';
-import { People } from './pages/People';
-import { PersonDetails } from './pages/PersonDetails';
+import {Spinner} from './components/Spinner';
 
 import { GlobalStyles } from './styles';
+
+const PlanetComponet = lazy(() => import('./pages/Planet'))
+const PageNotFound = lazy(() => import('./pages/PageNotFound'));
+const People = lazy(() => import('./pages/People'));
+const PersonDetails = lazy(() => import('./pages/PersonDetails'))
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <Router>
-        <Switch>
-          <Route path="/" component={People} exact={true} />
-          <Route path="/person-details/:name" exact={true}>
-            <PersonDetails />
-          </Route>
-          <Route path="/planet/:id" exact={true}>
-            <Planet />
-          </Route>
-          <Route path="*" component={PageNotFound} />
-        </Switch>
-      </Router>
+      <Suspense fallback={<Spinner size="large" page />}>
+        <Router>
+          <Switch>
+            <Route path="/" component={People} exact={true} />
+            <Route path="/person-details/:name" exact={true} component={PersonDetails} />
+            <Route path="/planet/:id" exact={true} component={PlanetComponet} />
+            <Route path="*" component={PageNotFound} />
+          </Switch>
+        </Router>
+      </Suspense>
     </>
   );
 }

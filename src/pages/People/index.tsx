@@ -121,3 +121,5 @@ export const People: React.FC<{}> = () => {
     </PageLayout>
   );
 };
+
+export default People;
