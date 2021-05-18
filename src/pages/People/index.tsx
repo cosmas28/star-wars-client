@@ -1,5 +1,5 @@
-import {debounce} from 'debounce';
-import * as React from 'react';
+import { debounce } from 'debounce';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { gql, useQuery } from '@apollo/client';
 
@@ -40,11 +40,13 @@ export const GET_PEOPLE_DATA = gql`
   }
 `;
 
+const PAGE_SIZE = 10;
+
 export const People: React.FC<{}> = () => {
   const history = useHistory();
-  const [searchTerm, setSearchTerm] = React.useState<string>('');
-  const [delayedSearchTerm, setDelayedSearchTerm] = React.useState('');
-  const [page, setPage] = React.useState(1);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [delayedSearchTerm, setDelayedSearchTerm] = useState('');
+  const [page, setPage] = useState(1);
   const { loading, error, data } = useQuery(GET_PEOPLE_DATA, {
     variables: {
       page,
@@ -52,16 +54,21 @@ export const People: React.FC<{}> = () => {
     },
   });
 
-  const [activeSnackbar, setActiveSnackbar] = React.useState(false);
+  const pageCount = useMemo(
+    () => Math.ceil(data?.peopleData?.count / PAGE_SIZE),
+    [data?.peopleData?.count]
+  );
+
+  const [activeSnackbar, setActiveSnackbar] = useState(false);
 
   const handleInputChange = (value: string) => {
     setSearchTerm(value);
     handleDebounce(value);
   };
 
-  const handleDebounce = debounce((searchQuery: string) => setDelayedSearchTerm(searchQuery), 1000)
+  const handleDebounce = debounce((searchQuery: string) => setDelayedSearchTerm(searchQuery), 1000);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (error) setActiveSnackbar(true);
   }, [error]);
 
@@ -103,10 +110,10 @@ export const People: React.FC<{}> = () => {
           ) : (
             <NotFound iconName="search" message="No results found!" />
           )}
-          {data?.peopleData?.count > 10 && (
+          {pageCount > 1 && (
             <PaginationWrapper>
               <Pagination
-                pageCount={data?.peopleData?.count}
+                pageCount={pageCount}
                 currentPage={page}
                 onPageChange={setPage}
                 rangeToDisplay={3}
