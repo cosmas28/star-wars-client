@@ -47,7 +47,7 @@ export const People: React.FC<{}> = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [delayedSearchTerm, setDelayedSearchTerm] = useState('');
   const [page, setPage] = useState(1);
-  const { loading, error, data } = useQuery(GET_PEOPLE_DATA, {
+  const { loading, error, data, refetch } = useQuery(GET_PEOPLE_DATA, {
     variables: {
       page,
       search: delayedSearchTerm,
@@ -70,11 +70,17 @@ export const People: React.FC<{}> = () => {
 
   useEffect(() => {
     if (error) setActiveSnackbar(true);
+
   }, [error]);
 
   const onClickPerson = (name: string) => () => history.push(`/person-details/${name}`);
 
   const onClockSnackbar = () => setActiveSnackbar(false);
+
+  const onClickFirstPageButton = () => {
+    refetch({page: 1, search: ''});
+    handleInputChange('');
+  }
 
   return (
     <PageLayout>
@@ -108,7 +114,12 @@ export const People: React.FC<{}> = () => {
               ))}
             </PeopleWrapper>
           ) : (
-            <NotFound iconName="search" message="No results found!" />
+            <NotFound
+              iconName="search"
+              message="No results found!"
+              handleClick={onClickFirstPageButton}
+              buttonLabel="First page"
+            />
           )}
           {pageCount > 1 && (
             <PaginationWrapper>
