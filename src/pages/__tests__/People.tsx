@@ -1,7 +1,7 @@
 import React from 'react';
 import { InMemoryCache } from '@apollo/client';
 
-import { renderApollo, cleanup, screen, fireEvent } from '../../test-utils';
+import { renderApollo, cleanup, screen, fireEvent, waitFor } from '../../test-utils';
 
 import { GET_PEOPLE_DATA, People } from '../People';
 
@@ -47,9 +47,9 @@ describe('People page', () => {
         cache,
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 0));
-
-      expect(screen.getByText('Luke Skywalker')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('Luke Skywalker')).toBeInTheDocument();
+      });
     });
 
     it('should call the onChange callback handler', async () => {
@@ -58,13 +58,13 @@ describe('People page', () => {
         cache,
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 0));
+      await waitFor(() => {
+        fireEvent.change(screen.getByPlaceholderText('Search…'), {
+          target: { value: 'luke' },
+        });
 
-      fireEvent.change(screen.getByPlaceholderText('Search…'), {
-        target: { value: 'luke' },
+        expect(screen.getByDisplayValue('luke')).toBeInTheDocument();
       });
-
-      expect(screen.getByDisplayValue('luke')).toBeInTheDocument();
     });
   });
 
@@ -90,9 +90,9 @@ describe('People page', () => {
         cache,
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 0));
-
-      expect(screen.getByText('Something seems to wrong with the system')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('Something seems to wrong with the system')).toBeInTheDocument();
+      });
     });
   });
 
@@ -121,9 +121,9 @@ describe('People page', () => {
         cache,
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 0));
-
-      expect(screen.getByText('No results found!')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('No results found!')).toBeInTheDocument();
+      });
     });
   });
 });

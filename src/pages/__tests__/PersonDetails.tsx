@@ -2,7 +2,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { InMemoryCache } from '@apollo/client';
 
-import { renderApollo, cleanup, screen, fireEvent } from '../../test-utils';
+import { renderApollo, cleanup, screen, fireEvent, waitFor } from '../../test-utils';
 
 import { GET_PERSON_DETAILS_BY_NAME, PersonDetails } from '../PersonDetails';
 
@@ -74,9 +74,9 @@ describe('PersonDetails', () => {
         { mocks, cache }
       );
 
-      await new Promise((resolve) => setTimeout(resolve, 0));
-
-      fireEvent.click(screen.getByText('Home world'));
+      await waitFor(() => {
+        fireEvent.click(screen.getByText('Home world'));
+      });
     });
 
     it('should display avatar with letter A when name is null', async () => {
@@ -106,9 +106,9 @@ describe('PersonDetails', () => {
         { mocks, cache }
       );
 
-      await new Promise((resolve) => setTimeout(resolve, 0));
-
-      expect(screen.getByText('A')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('A')).toBeInTheDocument();
+      });
     });
   });
 
@@ -138,9 +138,9 @@ describe('PersonDetails', () => {
         { mocks, cache }
       );
 
-      await new Promise((resolve) => setTimeout(resolve, 0));
-
-      expect(screen.getByText('Sorry!! This item does not exist.')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('Sorry!! This item does not exist.')).toBeInTheDocument();
+      });
     });
   });
 
@@ -167,10 +167,9 @@ describe('PersonDetails', () => {
         { mocks, cache }
       );
 
-      await new Promise((resolve) => setTimeout(resolve, 0));
-      
-      screen.debug();
-      expect(screen.getByText('Sorry!! This item does not exist.')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('Sorry!! This item does not exist.')).toBeInTheDocument();
+      });
     });
   });
 });

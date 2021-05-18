@@ -37,7 +37,7 @@ export const DetailsPageLayout: React.FC<Props> = ({
             <HeaderWrapper>{renderHeader()}</HeaderWrapper>
             <ContentWrapper>{children}</ContentWrapper>
             <Footer>
-              <IconButton onClick={handleBackButtonClick} iconName="chevronLeft"/>
+              <IconButton onClick={handleBackButtonClick} iconName="chevronLeft" />
             </Footer>
           </>
         )}

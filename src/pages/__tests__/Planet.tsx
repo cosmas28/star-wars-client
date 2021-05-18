@@ -2,7 +2,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { InMemoryCache } from '@apollo/client';
 
-import { renderApollo, cleanup, screen, fireEvent } from '../../test-utils';
+import { renderApollo, cleanup, screen, fireEvent, waitFor } from '../../test-utils';
 
 import { GET_PLANET_DETAILS_BY_ID, Planet } from '../Planet';
 
@@ -64,8 +64,6 @@ describe('Planet', () => {
         </MemoryRouter>,
         { mocks, cache }
       );
-
-      await new Promise((resolve) => setTimeout(resolve, 0));
     });
 
     it('should be able to click on the back button', async () => {
@@ -76,9 +74,9 @@ describe('Planet', () => {
         { mocks, cache }
       );
 
-      await new Promise((resolve) => setTimeout(resolve, 0));
-
-      fireEvent.click(screen.getByTestId('icon-button'));
+      await waitFor(() => {
+        fireEvent.click(screen.getByTestId('icon-button'));
+      });
     });
   });
 
@@ -105,9 +103,9 @@ describe('Planet', () => {
         { mocks, cache }
       );
 
-      await new Promise((resolve) => setTimeout(resolve, 0));
-
-      expect(screen.getByText('Sorry!! This item does not exist.')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('Sorry!! This item does not exist.')).toBeInTheDocument();
+      });
     });
   });
 
@@ -137,9 +135,9 @@ describe('Planet', () => {
         { mocks, cache }
       );
 
-      await new Promise((resolve) => setTimeout(resolve, 0));
-
-      expect(screen.getByText('Sorry!! This item does not exist.')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('Sorry!! This item does not exist.')).toBeInTheDocument();
+      });
     });
   });
 });

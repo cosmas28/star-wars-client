@@ -67,11 +67,13 @@ export const People: React.FC<{}> = () => {
     handleDebounce(value);
   };
 
-  const handleDebounce = debounce((searchQuery: string) => setDelayedSearchTerm(searchQuery), DEBOUNCE_DELAY_IN_MS);
+  const handleDebounce = debounce(
+    (searchQuery: string) => setDelayedSearchTerm(searchQuery),
+    DEBOUNCE_DELAY_IN_MS
+  );
 
   useEffect(() => {
     if (error) setActiveSnackbar(true);
-
   }, [error]);
 
   const onClickPerson = (name: string) => () => history.push(`/person-details/${name}`);
@@ -79,9 +81,9 @@ export const People: React.FC<{}> = () => {
   const onCloseSnackbar = () => setActiveSnackbar(false);
 
   const onClickRefreshPageButton = () => {
-    refetch({page: 1, search: ''});
+    refetch({ page: 1, search: '' });
     handleInputChange('');
-  }
+  };
 
   return (
     <PageLayout>
