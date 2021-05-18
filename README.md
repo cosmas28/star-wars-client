@@ -7,9 +7,7 @@
 
 The **star-wars-server** is an apollo-graphql client that display star was people and their homeworld.
 
-It is live on [Netlify](https://objective-meitner-75b03c.netlify.app/)
-This API server is hosted on [Heroku](https://star-wars-api-billa.herokuapp.com/).
-API repo is also found on [Github](https://github.com/cosmas28/star-wars-server)
+It is live on [Netlify](https://objective-meitner-75b03c.netlify.app/) .The API server is hosted on [Heroku](https://star-wars-api-billa.herokuapp.com/) and the repo is also found on [Github](https://github.com/cosmas28/star-wars-server)
 <br />
 
 # Table of Contents
