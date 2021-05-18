@@ -46,11 +46,11 @@ export const SearchbarWrapper = styled.div`
 	align-items: center;
 
 	@media screen and (min-width: 1441px) {
-		width: 39%;
+		width: 49%;
 	}
 
 	@media screen and (max-width: 1440px) {
-		width: 39%;
+		width: 49%;
 	}
 
 	@media screen and (max-width: 960px) {
@@ -70,11 +70,11 @@ export const LogoWrapper = styled.div`
 	font-size: 24px;
 
 	@media screen and (min-width: 1441px) {
-		width: 60%;
+		width: 49%;
 	}
 
 	@media screen and (max-width: 1440px) {
-		width: 60%;
+		width: 49%;
 	}
 	
 	@media screen and (max-width: 960px) {
