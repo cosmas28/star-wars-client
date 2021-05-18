@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { render, cleanup, screen, fireEvent } from '../../test-utils';
-
 import { Pagination } from '../Pagination';
+import { render, cleanup, screen, fireEvent } from '../../test-utils';
 
 describe('Pagination', () => {
   afterEach(cleanup);

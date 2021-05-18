@@ -1,9 +1,8 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
-import { render, cleanup, fireEvent, screen } from '../../test-utils';
-
 import { PersonCard } from '../PersonCard';
+import { render, cleanup, fireEvent, screen } from '../../test-utils';
 
 const mockHistoryPush = jest.fn();
 
@@ -31,7 +30,7 @@ describe('PersonCard', () => {
     );
   });
 
-  it('should be able to click on homeworlf link', () => {
+  it('should be able to click on homeworld link', () => {
     const onClick = jest.fn();
     render(
       <MemoryRouter>

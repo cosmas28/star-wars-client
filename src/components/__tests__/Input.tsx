@@ -1,19 +1,18 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
-
-import { render, cleanup, screen, fireEvent } from '../../test-utils';
 
 import { Input } from '../Input';
+import { render, cleanup, screen, fireEvent } from '../../test-utils';
 
 describe('Input', () => {
   afterEach(cleanup);
 
   it('renders without error', () => {
     const onChange = jest.fn();
+
     render(<Input onChange={onChange} placeholder="Search" value="luke" />);
   });
 
-  it('calls the onChange callback handler', async () => {
+  it('should call the onChange callback handler', async () => {
     const onChange = jest.fn();
 
     render(<Input onChange={onChange} placeholder="Search" value="" />);

@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { render, cleanup } from '../../test-utils';
-
 import { Snackbar } from '../Snackbar';
+import { render, cleanup } from '../../test-utils';
 
 describe('Snackbar', () => {
   afterEach(cleanup);

@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { render, cleanup } from '../../test-utils';
-
 import { DetailsRow } from '../DetailsRow';
+import { render, cleanup } from '../../test-utils';
 
 describe('DetailsRow', () => {
   afterEach(cleanup);

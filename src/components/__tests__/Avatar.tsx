@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { render, cleanup } from '../../test-utils';
-
 import { Avatar } from '../Avatar';
+import { render, cleanup } from '../../test-utils';
 
 describe('Avatar', () => {
   afterEach(cleanup);

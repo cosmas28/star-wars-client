@@ -1,14 +1,12 @@
 import React from 'react';
 
-import { render, cleanup } from '../../test-utils';
-
 import { PageLayout } from '../PageLayout';
+import { render, cleanup } from '../../test-utils';
 
 describe('PageLayout', () => {
   afterEach(cleanup);
 
   it('renders without error', () => {
-    const onClick = jest.fn();
     render(
       <PageLayout>
         <div>children</div>
