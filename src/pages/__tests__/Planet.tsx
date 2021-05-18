@@ -57,7 +57,7 @@ describe('Planet', () => {
       },
     ];
 
-    it('renders planet details', async () => {
+    it('renders without error', async () => {
       renderApollo(
         <MemoryRouter>
           <Planet />
@@ -68,7 +68,7 @@ describe('Planet', () => {
       await new Promise((resolve) => setTimeout(resolve, 0));
     });
 
-    it('should be able to click on back button', async () => {
+    it('should be able to click on the back button', async () => {
       renderApollo(
         <MemoryRouter>
           <Planet />

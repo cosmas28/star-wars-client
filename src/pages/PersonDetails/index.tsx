@@ -6,7 +6,6 @@ import { Avatar } from '../../components/Avatar';
 import { DetailsRow } from '../../components/DetailsRow';
 import { DetailsPageLayout } from '../../components/DetailsPageLayout';
 import { Snackbar } from '../../components/Snackbar';
-
 import { extractNumberFromString } from '../../utils/extractNumberFromString';
 import { formatCamelCase } from '../../utils/formatCamelCase';
 
@@ -44,7 +43,7 @@ export const PersonDetails: React.FC<{}> = () => {
     },
   });
   const planetId = data?.person?.homeworld
-    ? extractNumberFromString(data?.person?.homeworld)
+    ? extractNumberFromString(data.person.homeworld)
     : undefined;
 
   const [activeSnackbar, setActiveSnackbar] = React.useState(false);

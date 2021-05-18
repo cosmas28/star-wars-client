@@ -57,7 +57,7 @@ describe('PersonDetails', () => {
       },
     ];
 
-    it('renders person details', () => {
+    it('renders without error', () => {
       renderApollo(
         <MemoryRouter>
           <PersonDetails />
@@ -66,7 +66,7 @@ describe('PersonDetails', () => {
       );
     });
 
-    it('should be able to click on home world', async () => {
+    it('should be able to click on home world link', async () => {
       renderApollo(
         <MemoryRouter>
           <PersonDetails />
@@ -75,6 +75,7 @@ describe('PersonDetails', () => {
       );
 
       await new Promise((resolve) => setTimeout(resolve, 0));
+
       fireEvent.click(screen.getByText('Home world'));
     });
 
@@ -167,7 +168,8 @@ describe('PersonDetails', () => {
       );
 
       await new Promise((resolve) => setTimeout(resolve, 0));
-
+      
+      screen.debug();
       expect(screen.getByText('Sorry!! This item does not exist.')).toBeInTheDocument();
     });
   });

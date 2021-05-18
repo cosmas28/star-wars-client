@@ -44,7 +44,6 @@ export const Divider = styled.div`
   margin: 16px 0;
 `;
 
-
 export const Footer = styled.div`
 	margin-top: 24px;
 	display: flex;

@@ -6,7 +6,6 @@ import { DetailsRow } from '../../components/DetailsRow';
 import { DetailsPageLayout } from '../../components/DetailsPageLayout';
 import { ICONS } from '../../components/Icons';
 import { Snackbar } from '../../components/Snackbar';
-
 import { formatCamelCase } from '../../utils/formatCamelCase';
 
 import { NameWrapper, Divider, HeaderTitleWrapper, HomeIconWrapper } from './styles';

@@ -22,10 +22,3 @@ export const RowValue = styled(RowText)`
 	font-weight: 500;
 	color: #202327;
 `;
-
-export const Footer = styled.div`
-	margin-top: 24px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`;

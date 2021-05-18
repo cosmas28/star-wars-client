@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { InitialLetter } from './initialLetters';
+
 import { Container, LetterWrapper, SizeInPx } from './styles';
 
 type Props = {

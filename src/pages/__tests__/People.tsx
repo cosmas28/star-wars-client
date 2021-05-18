@@ -40,7 +40,8 @@ describe('People page', () => {
         },
       },
     ];
-    it('renders people', async () => {
+
+    it('should render people', async () => {
       renderApollo(<People />, {
         mocks,
         cache,
@@ -51,7 +52,7 @@ describe('People page', () => {
       expect(screen.getByText('Luke Skywalker')).toBeInTheDocument();
     });
 
-    it('calls the onChange callback handler', async () => {
+    it('should call the onChange callback handler', async () => {
       renderApollo(<People />, {
         mocks,
         cache,
@@ -67,7 +68,7 @@ describe('People page', () => {
     });
   });
 
-  describe('wifth error', () => {
+  describe('with error', () => {
     const cache = new InMemoryCache({ addTypename: false });
     const mocks = [
       {
@@ -95,7 +96,7 @@ describe('People page', () => {
     });
   });
 
-  describe('without data', () => {
+  describe('without people data', () => {
     const cache = new InMemoryCache({ addTypename: false });
     const mocks = [
       {

@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { render, cleanup, fireEvent, screen } from '../../test-utils';
-
 import { PageNotFound } from '../PageNotFound';
+import { render, cleanup } from '../../test-utils';
 
 const mockHistoryPush = jest.fn();
 

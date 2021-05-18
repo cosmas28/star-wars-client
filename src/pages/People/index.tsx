@@ -41,6 +41,7 @@ export const GET_PEOPLE_DATA = gql`
 `;
 
 const PAGE_SIZE = 10;
+const DEBOUNCE_DELAY_IN_MS = 1000;
 
 export const People: React.FC<{}> = () => {
   const history = useHistory();
@@ -66,7 +67,7 @@ export const People: React.FC<{}> = () => {
     handleDebounce(value);
   };
 
-  const handleDebounce = debounce((searchQuery: string) => setDelayedSearchTerm(searchQuery), 1000);
+  const handleDebounce = debounce((searchQuery: string) => setDelayedSearchTerm(searchQuery), DEBOUNCE_DELAY_IN_MS);
 
   useEffect(() => {
     if (error) setActiveSnackbar(true);
@@ -75,9 +76,9 @@ export const People: React.FC<{}> = () => {
 
   const onClickPerson = (name: string) => () => history.push(`/person-details/${name}`);
 
-  const onClockSnackbar = () => setActiveSnackbar(false);
+  const onCloseSnackbar = () => setActiveSnackbar(false);
 
-  const onClickFirstPageButton = () => {
+  const onClickRefreshPageButton = () => {
     refetch({page: 1, search: ''});
     handleInputChange('');
   }
@@ -117,8 +118,8 @@ export const People: React.FC<{}> = () => {
             <NotFound
               iconName="search"
               message="No results found!"
-              handleClick={onClickFirstPageButton}
-              buttonLabel="First page"
+              handleClick={onClickRefreshPageButton}
+              buttonLabel="Refresh page"
             />
           )}
           {pageCount > 1 && (
@@ -131,7 +132,7 @@ export const People: React.FC<{}> = () => {
               />
             </PaginationWrapper>
           )}
-          <Snackbar close={onClockSnackbar} active={activeSnackbar}>
+          <Snackbar close={onCloseSnackbar} active={activeSnackbar}>
             Something seems to wrong with the system
           </Snackbar>
         </InnerSectionWrapper>
