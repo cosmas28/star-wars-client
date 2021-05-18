@@ -54,6 +54,7 @@ export const Planet: React.FC<{}> = () => {
       loading={loading}
       handleBackButtonClick={onClickBackButton}
       empty={!data?.planet}
+      errorMessage={`Planet with the id ${id} does not exist`}
       renderHeader={() => (
         <>
           <HomeIconWrapper>{ICONS.home}</HomeIconWrapper>
@@ -74,7 +75,7 @@ export const Planet: React.FC<{}> = () => {
             </React.Fragment>
           );
         })}
-      <Snackbar close={onCloseSnackbar} active={activeSnackbar}>
+      <Snackbar actionLabel="Close" onClick={onCloseSnackbar} active={activeSnackbar}>
         System error! Please refresh or go back.
       </Snackbar>
     </DetailsPageLayout>

@@ -11,6 +11,7 @@ type Props = {
   handleBackButtonClick: () => void;
   loading?: boolean;
   empty?: boolean;
+  errorMessage: string;
 };
 
 export const DetailsPageLayout: React.FC<Props> = ({
@@ -19,6 +20,7 @@ export const DetailsPageLayout: React.FC<Props> = ({
   loading,
   children,
   empty,
+  errorMessage
 }) => {
   return (
     <MainSection>
@@ -28,7 +30,7 @@ export const DetailsPageLayout: React.FC<Props> = ({
         ) : empty ? (
           <NotFound
             iconName="exclamationTriangle"
-            message="Sorry!! This item does not exist."
+            message={errorMessage}
             handleClick={handleBackButtonClick}
             buttonLabel="Previous page"
           />

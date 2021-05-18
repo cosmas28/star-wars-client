@@ -61,6 +61,7 @@ export const PersonDetails: React.FC<{}> = () => {
       loading={loading}
       handleBackButtonClick={onClickBackButton}
       empty={!data?.person}
+      errorMessage={`Planet with the name ${name} does not exist`}
       renderHeader={() => (
         <>
           <AvatarWrapper>
@@ -90,7 +91,7 @@ export const PersonDetails: React.FC<{}> = () => {
             </React.Fragment>
           );
         })}
-      <Snackbar close={onCloseSnackbar} active={activeSnackbar}>
+      <Snackbar actionLabel="Close" onClick={onCloseSnackbar} active={activeSnackbar}>
         System error! Please refresh or go back.
       </Snackbar>
     </DetailsPageLayout>
